@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# copy all files from default installs to provided point
+SOURCE=$1
+TARGET=$2
+
+if [[ -z "$TARGET" || -z "$SOURCE" ]]; then
+    echo "Usage: $0 <source> <target>"
+    exit 1
+fi
+
+cd $SOURCE
+tar cf - . | ( cd $TARGET; tar xf - )
+
